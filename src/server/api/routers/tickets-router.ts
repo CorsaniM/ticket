@@ -15,6 +15,7 @@ export const ticketsRouter = createTRPCRouter({
         description: z.string(),
         images: z.string(),
         state: z.string(),
+        orgId: z.string(),
         createdAt: z.date(),
         updatedAt: z.date(),
       }),
@@ -30,6 +31,20 @@ export const ticketsRouter = createTRPCRouter({
     return ctx.db.query.tickets.findMany();
   }),
 
+  getByUser: publicProcedure
+    .input(
+      z.object({
+        userId: z.string(),
+      }),
+    )
+    .query(async ({ input }) => {
+      const channel = await db.query.tickets.findMany({
+        where: eq(tickets.user, input.userId),
+      });
+
+      return channel;
+    }),
+
   update: publicProcedure
     .input(
       z.object({
@@ -39,6 +54,7 @@ export const ticketsRouter = createTRPCRouter({
         description: z.string(),
         images: z.string(),
         state: z.string(),
+        orgId: z.string(),
         createdAt: z.date(),
         updatedAt: z.date(),
       }),

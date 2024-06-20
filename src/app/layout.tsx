@@ -6,7 +6,12 @@ import { TRPCReactProvider } from "app/trpc/react";
 import {
   ClerkProvider,
 } from '@clerk/nextjs'
-import Sidenav from "./_components/sidenav";
+import Sidebar from "./_components/sidebar";
+import Upbar from "./_components/upbar";
+import { Toaster } from "./_components/ui/sonner";
+import { SyncActiveOrganization } from "./_components/SyncActiveOrganization";
+import { auth } from "@clerk/nextjs/server";
+
 
 export const metadata = {
   title: "Generar tickets",
@@ -19,11 +24,26 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+
+  const { userId, sessionClaims } = auth();
+console.log(sessionClaims)
+  
   return (
     <ClerkProvider>
+      <SyncActiveOrganization membership={sessionClaims?.org_id}/>
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-      <TRPCReactProvider>{children}</TRPCReactProvider>
+      <div className="fixed top h-16 left-0 flex">
+        <Upbar/>
+      </div>
+      <div className='fixed top-16 bottom-0 left-0 flex flex-col gap-2 p-2 pr-6 shadow-xl sm:flex h-full'>
+      <Sidebar/>
+      </div>
+      <div className='pl-64 pt-11'>
+        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <Toaster />
+      </div>
       </body>
     </html>
     </ClerkProvider>

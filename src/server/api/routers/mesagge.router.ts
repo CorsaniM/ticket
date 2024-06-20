@@ -16,6 +16,7 @@ export const messageRouter = createTRPCRouter({
         state: z.boolean(),
         createdAt: z.date(),
         updatedAt: z.date(),
+        orgId: z.string(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -37,6 +38,7 @@ export const messageRouter = createTRPCRouter({
         description: z.string(),
         images: z.string(),
         state: z.boolean(),
+        orgId: z.string(),
         createdAt: z.date(),
         updatedAt: z.date(),
       }),

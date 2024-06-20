@@ -21,6 +21,7 @@ export const tickets = createTable(
     description: text("description"),
     images: text("images"),
     state: text("name", { length: 256 }),
+    orgId: text("orgId", { length: 256 }),
     createdAt: int("created_at", { mode: "timestamp" })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
@@ -37,6 +38,7 @@ export const message = createTable("message", {
   description: text("description"),
   images: text("images"),
   state: int("state", { mode: "boolean" }).default(false),
+  orgId: text("orgId", { length: 256 }),
   createdAt: int("created_at", { mode: "timestamp" })
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
