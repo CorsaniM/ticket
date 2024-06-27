@@ -8,15 +8,8 @@ import {
 import Sidenav, { SidenavItem } from '../sidenav';
 
 export default function Sidebar() {
-    // const [expanded, setExpanded] = useState(false)
-
-    // function toggleExpanded() {
-    //     setExpanded((prev) => !prev)
-    // }
-
     return (
         <Sidenav>
-            
             <SidenavItem icon={<MailPlus />} href="/">
                 Crear Tickets
             </SidenavItem>
