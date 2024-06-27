@@ -3,6 +3,7 @@
 import { api } from "app/trpc/server"
 import { currentUser } from "@clerk/nextjs/server"
 import { List, ListTile } from "app/app/_components/list"
+import Link from "next/link";
 
 export default async function Page() {
     const user = await currentUser();
@@ -24,12 +25,12 @@ export default async function Page() {
                     {ticketsPropios ? (
                         <List>
                             {ticketsPropios?.map((ticket) => (
-                                <div key={ticket.id}>
+                                <Link href={`/tickets/222/${ticket.id}`} key={ticket.id}>
                                     <ListTile
                                         title={ticket.name}
                                     />
                                     <h1>{ticket.description}</h1>
-                                </div>
+                                </Link>
                             ))}
                         </List>
                     ) : (
@@ -37,6 +38,7 @@ export default async function Page() {
                             <h1>No se encontraron tickets a su nombre</h1>
                         </div>
                     )}
+                   
                 </div>
             </div>
         </div>

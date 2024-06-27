@@ -5,6 +5,7 @@ import { GeistSans } from "geist/font/sans";
 import { TRPCReactProvider } from "app/trpc/react";
 import {
   ClerkProvider,
+  useOrganization,
 } from '@clerk/nextjs'
 import Sidebar from "./_components/sidebar";
 import Upbar from "./_components/upbar";
@@ -27,11 +28,11 @@ export default function RootLayout({
 
 
   const { userId, sessionClaims } = auth();
-console.log(sessionClaims)
+
   
   return (
     <ClerkProvider>
-      <SyncActiveOrganization membership={sessionClaims?.org_id}/>
+      <SyncActiveOrganization membership={sessionClaims?.membership}/>
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
       <div className="fixed top h-16 left-0 flex">

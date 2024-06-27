@@ -1,12 +1,16 @@
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+"use client"
+import { SignInButton, SignedIn, SignedOut, UserButton, useOrganization } from "@clerk/nextjs";
 
 export default function Upbar() {
-    return(
-        <div className="w-screen h-16">
-            <div className="float-right p-3 mr-10">
+    const { organization } = useOrganization();
 
-
-            <SignedOut>
+    return (
+        <div className="w-screen h-16 shadow-md flex justify-between items-center px-4">
+            <div className="text-lg">
+                <h1>Bienvenido {organization?.name}!</h1>
+            </div>
+            <div className="flex items-center p-5">
+                <SignedOut>
                     <SignInButton />
                 </SignedOut>
                 <SignedIn>
@@ -14,5 +18,5 @@ export default function Upbar() {
                 </SignedIn>
             </div>
         </div>
-    )
+    );
 }

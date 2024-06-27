@@ -45,6 +45,20 @@ export const ticketsRouter = createTRPCRouter({
       return channel;
     }),
 
+  getByOrg: publicProcedure
+    .input(
+      z.object({
+        OrgId: z.string(),
+      }),
+    )
+    .query(async ({ input }) => {
+      const channel = await db.query.tickets.findFirst({
+        where: eq(tickets.orgId, input.OrgId),
+      });
+
+      return channel;
+    }),
+
   update: publicProcedure
     .input(
       z.object({
