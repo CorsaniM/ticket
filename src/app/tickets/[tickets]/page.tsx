@@ -1,46 +1,41 @@
-"use server"
+"use client";
 
-import { api } from "app/trpc/server"
-import { currentUser } from "@clerk/nextjs/server"
-import { List, ListTile } from "app/app/_components/list"
+import { api } from "app/trpc/react";
+import { List, ListTile } from "app/app/_components/list";
 import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 
-export default async function Page() {
-    const user = await currentUser();
+export default function Page() {
+    const { user } = useUser();
 
     if (!user) {
-        return <div>Loading...</div>
+        return <div>Loading...</div>;
     }
 
-
-    const ticketsPropios = await api.tickets.getByUser({ userId: user.id });
-
-
-    console.log(user?.id)
+    const tickets = api.tickets.getByUser.useQuery({ userId: user!.id }).data;
 
     return (
         <div className="h-screen">
             <div className="flex h-screen">
                 <div className="w-7/8 p-20">
-                    {ticketsPropios ? (
-                        <List>
-                            {ticketsPropios?.map((ticket) => (
+                    <List>
+                        {tickets ? (
+                            tickets.map((ticket) => (
                                 <Link href={`/tickets/222/${ticket.id}`} key={ticket.id}>
                                     <ListTile
                                         title={ticket.name}
                                     />
                                     <h1>{ticket.description}</h1>
                                 </Link>
-                            ))}
-                        </List>
-                    ) : (
-                        <div>
-                            <h1>No se encontraron tickets a su nombre</h1>
-                        </div>
-                    )}
-                   
+                            ))
+                        ) : (
+                            <div>
+                                <h1>No se encontraron tickets a su nombre</h1>
+                            </div>
+                        )}
+                    </List>
                 </div>
             </div>
         </div>
-    )
+    );
 }
