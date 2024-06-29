@@ -1,6 +1,8 @@
 "use client"
 import { OrganizationSwitcher, UserButton, useOrganization, useUser } from "@clerk/nextjs";
 import { checkRole } from "app/lib/react/roles";
+
+
 export default function Upbar() {
     const { organization } = useOrganization();
     const { user } = useUser()
@@ -17,11 +19,9 @@ export default function Upbar() {
 
             </div>
             <div className="flex items-center p-5">
-                {isAdmin && 
                 <div>
                     <OrganizationSwitcher hidePersonal={true}/>
                 </div>
-                }
                 <UserButton/>
             </div>
         </div>
