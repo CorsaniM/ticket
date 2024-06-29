@@ -1,27 +1,25 @@
-"use server"
+"use client"
 
 
-import { api } from "app/trpc/server"
-import { currentUser } from "@clerk/nextjs/server"
+import { api } from "app/trpc/react"
 import { List, ListTile } from "app/app/_components/list"
+import { useUser } from "@clerk/nextjs"
 
 
-export default async function page() {
+export default function page() {
   
-    const tickets = await api.tickets.list()
-    const user = await currentUser();
-  console.log(user!.id)
-    const ticketsPropios =  tickets.filter((ticket) => ticket.user === user!.id)
+  const user = useUser();
+  
+  const tickets = api.tickets.getByUser.useQuery({userId: user.user!.id}).data;
 
-    console.log(user?.id)
 
     return(
     <div className="h-screen">
         <div className="flex h-screen">
         <div className="w-7/8 p-20">
         <List>
-          {ticketsPropios 
-          && ticketsPropios?.map((tickets) => {
+          {tickets 
+          && tickets?.map((tickets) => {
             return (
             <div>
 

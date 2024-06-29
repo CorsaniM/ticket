@@ -31,7 +31,6 @@ export default function ClientPage() {
     async function handleCreate() {
         try {
             const formData = new FormData()
-            
             if (image) {
                 formData.append('file', image)
                 
@@ -39,7 +38,6 @@ export default function ClientPage() {
                     method: 'POST',
                     body: formData,
                 });
-            
                 const data = await response.json();
             }
             
@@ -51,7 +49,7 @@ export default function ClientPage() {
                 state: "subida",
                 createdAt: new Date(),
                 updatedAt: new Date(),
-                user: user!.id, // Aquí obtenemos el ID del usuario desde el hook useUser
+                user: user!.id, 
             })
             toast.success('ticket creado correctamente')
             router.refresh()
