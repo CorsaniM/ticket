@@ -18,7 +18,6 @@ export function SidenavItem(props: {
 }) {
   const className = `w-full flex gap-2 px-5 py-4 items-center
     hover:bg-stone-300 active:bg-stone-500`;
-
   const content = (
     <>
       <div className="items-center justify-center p-1">{props.icon}</div>
