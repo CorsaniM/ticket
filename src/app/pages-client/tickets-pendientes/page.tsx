@@ -1,13 +1,14 @@
 "use client"
 
 import Tickets from "app/app/_components/tickets/page"
+import { Title } from "app/app/_components/ui/title"
 
 export default function Page() {
 
     return (
-        <div className="h-screen">
-            <div className="flex">
-                <h1 className="flex"> Tickets Pendientes</h1>
+        <div className="flex-auto">
+            <div className="flex flex-col align-center">
+                <Title>Tickets pendientes</Title>
                 <Tickets />
             </div>
         </div>

@@ -7,6 +7,7 @@ import { Input } from "app/app/_components/ui/input"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { useOrganization, useUser } from "@clerk/nextjs"
+import { Title } from "app/app/_components/ui/title"
 
 export default function ClientPage() {
 
@@ -61,55 +62,63 @@ export default function ClientPage() {
     }
 
     return (
-        <div className="h-screen">
-            <div className="flex h-screen">
-                <div className="w-7/8 p-20">
-                    <div className="h-1/5 flex flex-col justify-center">
-                        <div className="flex space-x-4">
+        <div className="flex-auto px-4 mx-4">
+            <Title>Crear nuevo ticket</Title>
+            <div className="flex flex-col m-4">
+                <div className="h-1/5 flex flex-col m-2">
+                    <div className="flex flex-row gap-6">
+                        <div className="flex-auto w-1/2 text-center">
                             <h1>Ingrese el motivo de su ticket</h1>
+                        </div>
+                        <div className="flex-auto w-1/2 text-center">
                             <h1>Ingrese el nombre de la empresa</h1>
                         </div>
-                        <div className="flex space-x-4">
-                            <Input
-                                value={motivo}
-                                placeholder='Motivo...'
-                                onChange={(e) => setMotivo(e.target.value)}
-                            />
-                            <Input
-                                value={empresa}
-                                placeholder='Nombre de la empresa...'
-                                onChange={(e) => setEmpresa(e.target.value)}
-                            />
-                        </div>
-                    </div>
-                    <div className="h-1/5 flex flex-col justify-center">
-                        <h1>Ingrese una descripción de su ticket</h1>
-                        <textarea
-                            className="resize-y h-36 w-full border border-gray-300 p-2"
-                            value={description}
-                            placeholder='Descripción...'
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
-                    </div>
-                    <div className="h-1/5 flex flex-col justify-center">
-                        <h1>Opcional* ingrese una imagen</h1>
+                    </div> 
+                    <div className="flex flex-row gap-6">
+                        <div className="flex-auto w-1/2 align-center">
                         <Input
-                            type="file"
-                            onChange={(e) => setImage(e.target.files?.[0] || null)}
+                            value={motivo}
+                            placeholder='Motivo...'
+                            onChange={(e) => setMotivo(e.target.value)}
                         />
-                    </div>
-                    <button
-                        className="px-4 py-2 text-black rounded disabled:opacity-50"
-                        disabled={isPending}
-                        onClick={handleCreate}
-                    >
-                        {isPending ? "Creando..." : "Crear ticket"}
-                    </button>
+                        </div>
+                        <div className="flex w-1/2">
+                        <Input
+                            value={empresa}
+                            placeholder='Nombre de la empresa...'
+                            onChange={(e) => setEmpresa(e.target.value)}
+                        />
+                        </div>
+                    </div>    
                 </div>
+                <div className="h-1/5 flex flex-col m-2 text-center">
+                    <h1>Ingrese una descripción de su ticket</h1>
+                    <textarea
+                        className="resize-y h-36 w-full border border-gray-300 p-2"
+                        value={description}
+                        placeholder='Descripción...'
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                </div>
+                <div className="h-1/5 flex flex-col m-2 text-center">
+                    <h1>Opcional* ingrese una imagen</h1>
+                    <Input
+                        type="file"
+                        onChange={(e) => setImage(e.target.files?.[0] || null)}
+                    />
+                </div>
+                <button
+                    className="m-4 px-4 py-2 text-black rounded disabled:opacity-50 rounded-full bg-slate-200 hover:bg-slate-300"
+                    disabled={isPending}
+                    onClick={handleCreate}
+                >
+                    {isPending ? "Creando..." : "Crear ticket"}
+                </button>
             </div>
         </div>
     )
 }
+
 function sessionClaims(): { session: any } {
     throw new Error("Function not implemented.")
 }

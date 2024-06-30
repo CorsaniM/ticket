@@ -1,13 +1,15 @@
 "use client"
 
-import Notificaciones from "app/app/_components/notificaciones/page"
+import Tickets from "app/app/_components/tickets/page"
+import { Title } from "app/app/_components/ui/title"
 
 export default function Page() {
 
     return (
-        <div className="h-screen">
-            <div className="flex h-screen">
-                   <Notificaciones />
+        <div className="flex-auto">
+            <div className="flex flex-col align-center">
+                <Title>Nuevos tickets</Title>
+                <Tickets />
             </div>
         </div>
     )

@@ -38,10 +38,10 @@ export default function RootLayout({
       <div className="fixed top h-16">
         <Upbar/>
       </div>
-      <div className='fixed top-16 bottom-0 left-0 flex flex-col gap-2 p-2 pr-6 shadow-xl sm:flex h-full'>
+      <div className='fixed top-16 bottom-0 left-0 flex flex-col gap-2 shadow-xl sm:flex h-full'>
       <Sidebar/>
       </div>
-      <div className='flex place-content-center flex-column pl-52 pt-20'>
+      <div className='flex place-content-center flex-column ml-52 pt-20'>
         <TRPCReactProvider>{children}</TRPCReactProvider>
         <Toaster />
       </div>
