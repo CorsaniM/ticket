@@ -17,8 +17,8 @@ export function SidenavItem(props: {
   onClick?: () => void;
 }) {
   const className = `w-full flex gap-2 px-3 py-2 items-center
-    hover:bg-stone-100 dark:hover:bg-stone-900
-    active:bg-stone-200 dark:active:bg-stone-800`;
+    dark:hover:bg-stone-300 hover:bg-grey-800
+    active:bg-stone-200 active:bg-stone-800`;
 
   const content = (
     <>
