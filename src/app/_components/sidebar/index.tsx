@@ -61,12 +61,12 @@ export default function Sidebar() {
                     Notificaciones
             </SidenavItem>
             <SidenavItem 
-                icon={<Mails />} 
+                icon={<MailPlus />} 
                 href="/pages-client/crear-tickets">
                     Crear ticket
             </SidenavItem>
             <SidenavItem
-                icon={<MailOpen />}
+                icon={<Mails />}
                 href="/pages-client/tickets-pendientes">
                     Tickets pendientes
             </SidenavItem>
