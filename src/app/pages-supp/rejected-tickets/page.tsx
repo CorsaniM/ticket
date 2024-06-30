@@ -1,16 +1,15 @@
 "use client"
 
-export default function SuportPage() {
+import Tickets from "app/app/_components/tickets/page"
+
+export default function Page() {
 
     return (
         <div className="h-screen">
             <div className="flex h-screen">
-                <div className="w-7/8 p-20">
-                   
-                </div>
+                   <Tickets />
             </div>
         </div>
     )
 }
-
 

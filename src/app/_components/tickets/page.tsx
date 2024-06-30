@@ -6,7 +6,7 @@ import { List, ListTile } from "app/app/_components/list"
 import { useUser } from "@clerk/nextjs"
 
 
-export default function page() {
+export default function Tickets() {
   
   const user = useUser();
   
@@ -14,9 +14,7 @@ export default function page() {
 
 
     return(
-    <div className="h-screen">
-        <div className="flex h-screen">
-        <div className="w-7/8 p-20">
+    <div className="w-7/8 p-20">
         <List>
           {tickets 
           && tickets?.map((tickets) => {
@@ -33,8 +31,5 @@ export default function page() {
           })}
         </List>
         </div>
-    </div>
-    </div>
-
     )
 }
