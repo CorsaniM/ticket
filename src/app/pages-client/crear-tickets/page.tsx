@@ -2,7 +2,7 @@
 
 import { use, useState } from "react"
 import { api } from "app/trpc/react"
-import { Input } from "./_components/ui/input"
+import { Input } from "app/app/_components/ui/input"
 
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"

@@ -1,8 +1,5 @@
 "use client"
 import { useOrganization } from "@clerk/nextjs";
-import ClientPage from "./clientPage";
-import SuportPage from "./suportPage";
-
 
 
 
@@ -14,12 +11,14 @@ const organization = useOrganization()
 if(organization.organization?.name === "IanTech"){
 return (
 <div>
-    <SuportPage />
+
 </div>)
 }  
 else{
-    return(
-        <ClientPage/>
+    return( 
+        <div>
+
+</div>
     )
 }
 

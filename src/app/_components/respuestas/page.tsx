@@ -1,7 +1,5 @@
 
-export default function page() {
-
-    
+export default function Respuestas() {
     return(
     <div className="h-screen">
         <div className="flex h-screen">
