@@ -1,7 +1,7 @@
 "use client"
 import { useOrganization } from "@clerk/nextjs";
-import Notificaciones from "./_components/notificaciones/page";
-import { Title } from "./_components/ui/title";
+import NotiSupp from "./pages-supp/notifications/page";
+import NotiClient from "./pages-client/notificaciones/page";
 
 
 export default function Page() {
@@ -9,22 +9,13 @@ const organization = useOrganization()
 
 if(organization.organization?.name === "IanTech"){
 return (
-<div className="flex-auto">
-            <div className="flex flex-col align-center">
-                <Title>Notificaciones</Title>
-                <Notificaciones />
-            </div>
-        </div>)
+    <NotiSupp/>
+            )
 }  
 else{
     return (
-        <div className="flex-auto">
-            <div className="flex flex-col align-center">
-                <Title>Notificaciones</Title>
-                <Notificaciones />
-            </div>
-        </div>
-    )
+        <NotiClient/>
+                )
 }
 
 }

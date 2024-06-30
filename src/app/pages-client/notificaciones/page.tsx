@@ -3,7 +3,7 @@
 import Notificaciones from "app/app/_components/notificaciones/page"
 import { Title } from "app/app/_components/ui/title"
 
-export default function Page() {
+export default function NotiClient() {
 
     return (
         <div className="flex-auto">
