@@ -46,3 +46,19 @@ export const message = createTable(
     .notNull(),
   updatedAt: int("updatedAt", { mode: "timestamp" }),
 });
+
+
+export const notification = createTable(
+  "notification", 
+  {
+  id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+  user: text("user").notNull(),
+  title: text("title", { length: 256 }),
+  description: text("description"),
+  state: int("state", { mode: "boolean" }).default(false),
+  orgId: text("orgId", { length: 256 }),
+  createdAt: int("created_at", { mode: "timestamp" })
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: int("updatedAt", { mode: "timestamp" }),
+});

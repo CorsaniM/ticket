@@ -20,7 +20,7 @@ export default function Tickets() {
                 key={tickets.id}
                 title={tickets.name}
                 />
-                <h1>{tickets.description}</h1>
+                <h1>{tickets.id} {tickets.description}</h1>
             </div>
             );
           })}
