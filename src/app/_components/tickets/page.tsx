@@ -13,7 +13,7 @@ export default function Tickets() {
   const listacompleta = api.tickets.list.useQuery().data;
 
     return(
-    <div className="w-7/8 p-20">
+    <div className="px-10 py-4">
         <List>
           {listacompleta 
           && listacompleta?.map((ticket) => {
