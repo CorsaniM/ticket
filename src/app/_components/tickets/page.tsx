@@ -4,7 +4,7 @@ import { api } from "app/trpc/react"
 import { List, ListTile } from "app/app/_components/list"
 import { useUser } from "@clerk/nextjs"
 import Link from "next/link";
-import { Alert, AlertDescription, AlertTitle } from "app/app/_components/ui/alert"
+import { Alert, AlertTitle, AlertDescription } from "../ui/tarjeta";
 import { Terminal } from "lucide-react"
 
 export default function Tickets() {
@@ -18,16 +18,16 @@ export default function Tickets() {
           {listacompleta 
           && listacompleta?.map((ticket) => {
             return (
-              
+              <div className="my-1">
               <Link href={`/tickets/${ticket.id}`} key={ticket.id}>
                  <Alert>
-                  <Terminal className="h-4 w-4" />
                   <AlertTitle>{ticket.name}</AlertTitle>
                   <AlertDescription>
-                  {ticket.id} {ticket.description}
+                  ID:{ticket.id} {ticket.description}
                   </AlertDescription>
                 </Alert>
               </Link>
+              </div>
             );
           })}
         </List>

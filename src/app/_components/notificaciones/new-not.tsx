@@ -7,7 +7,7 @@ import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, Await
 import { notification } from "app/server/db/schema";
 import Link from "next/link";
 import { Terminal } from "lucide-react";
-import { Alert, AlertTitle, AlertDescription } from "../ui/alerta";
+import { Alert, AlertTitle, AlertDescription } from "../ui/tarjeta";
 
 
 export default function NotificacionGenerica(props: {id: number}) {
@@ -16,15 +16,13 @@ export default function NotificacionGenerica(props: {id: number}) {
 
     return(
       <div>
-      <Alert>
-      <Terminal className="w-7/8 p-20" />
-      <Link href={`/tickets/${notification?.id}`} key={notification?.id}></Link>
-      <AlertTitle>{notification?.name}</AlertTitle>
-      <AlertDescription>
-      <h1>{notification?.description} </h1>
-      </AlertDescription>
-    </Alert>
-        </div>
+        <Link href={`/tickets/${notification?.id}`} key={notification?.id}>
+          <Alert>
+            <AlertTitle>{notification?.name}</AlertTitle>
+            <AlertDescription>{notification?.description}</AlertDescription>
+          </Alert>
+        </Link>
+      </div>
     )
 
 
