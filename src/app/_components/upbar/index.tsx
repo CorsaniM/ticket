@@ -22,7 +22,6 @@ export default function Upbar() {
                 <div>
                     <OrganizationSwitcher hidePersonal={true}/>
                 </div>
-                }
                 <UserButton/>
             </div>
         </div>
