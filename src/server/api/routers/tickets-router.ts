@@ -68,6 +68,7 @@ export const ticketsRouter = createTRPCRouter({
         description: z.string(),
         images: z.string(),
         state: z.string(),
+        relevance: z.string(),
         orgId: z.string(),
         createdAt: z.date(),
         updatedAt: z.date(),
