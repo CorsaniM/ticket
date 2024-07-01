@@ -6,7 +6,7 @@ import { checkRole } from "app/lib/react/roles";
 export default function Upbar() {
     const { organization } = useOrganization();
     const { user } = useUser()
-    const isAdmin = checkRole("org:page_owner")
+    const isAdmin = checkRole("owner" || "page_owner")
     return (
         <div className="w-screen h-16 shadow-md flex justify-between items-center px-4 font-serif">
             <div className="text-lg">
@@ -19,9 +19,12 @@ export default function Upbar() {
 
             </div>
             <div className="flex items-center p-5">
+                {isAdmin ??
+
                 <div>
                     <OrganizationSwitcher hidePersonal={true}/>
                 </div>
+                }
                 <UserButton/>
             </div>
         </div>
