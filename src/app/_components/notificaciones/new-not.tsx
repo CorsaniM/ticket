@@ -6,6 +6,8 @@ import { useUser } from "@clerk/nextjs"
 import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, AwaitedReactNode } from "react";
 import { notification } from "app/server/db/schema";
 import Link from "next/link";
+import { Terminal } from "lucide-react";
+import { Alert, AlertTitle, AlertDescription } from "../ui/alerta";
 
 
 export default function NotificacionGenerica(props: {id: number}) {
@@ -13,13 +15,17 @@ export default function NotificacionGenerica(props: {id: number}) {
   const notification = api.tickets.get.useQuery({id}).data;
 
     return(
-    <div className="w-7/8 p-20">
-          <Link href={`/tickets/${notification?.id}`} key={notification?.id}>
-              <ListTile
-                  title={notification?.name}
-              />
-              <h1>{notification?.description} </h1>
-          </Link>
+      <div>
+      <Alert>
+      <Terminal className="w-7/8 p-20" />
+      <Link href={`/tickets/${notification?.id}`} key={notification?.id}></Link>
+      <AlertTitle>{notification?.name}</AlertTitle>
+      <AlertDescription>
+      <h1>{notification?.description} </h1>
+      </AlertDescription>
+    </Alert>
         </div>
     )
+
+
 }
