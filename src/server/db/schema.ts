@@ -20,7 +20,6 @@ export const tickets = createTable(
     name: text("name", { length: 256 }),
     description: text("description"),
     images: text("images"),
-    relevance: text("relevance"),
     state: text("name", { length: 256 }),
     orgId: text("orgId", { length: 256 }),
     createdAt: int("created_at", { mode: "timestamp" })
@@ -33,7 +32,9 @@ export const tickets = createTable(
   }),
 );
 
-export const message = createTable("message", {
+export const message = createTable(
+  "message", 
+  {
   id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
   user: text("user").notNull(),
   description: text("description"),

@@ -15,13 +15,11 @@ export default function Page() {
     const tickets = api.tickets.getByUser.useQuery({ userId: user!.id }).data;
 
     return (
-        <div className="h-screen">
-            <div className="flex h-screen">
                 <div className="w-7/8 p-20">
                     <List>
                         {tickets ? (
                             tickets.map((ticket) => (
-                                <Link href={`/tickets/222/${ticket.id}`} key={ticket.id}>
+                                <Link href={`/tickets/${ticket.id}`} key={ticket.id}>
                                     <ListTile
                                         title={ticket.name}
                                     />
@@ -35,7 +33,5 @@ export default function Page() {
                         )}
                     </List>
                 </div>
-            </div>
-        </div>
     );
 }
