@@ -5,7 +5,7 @@ import { List, ListTile } from "app/app/_components/list"
 import { useUser } from "@clerk/nextjs"
 import Link from "next/link";
 import { Alert, AlertTitle, AlertDescription } from "../ui/tarjeta";
-import { Terminal } from "lucide-react"
+
 
 export default function Tickets() {
   const user = useUser();
@@ -19,7 +19,7 @@ export default function Tickets() {
           && listacompleta?.map((ticket) => {
             return (
               <div className="my-1">
-              <Link href={`/tickets/${ticket.id}`} key={ticket.id}>
+              <Link href={`/_components/tickets/${ticket.id}`} key={ticket.id}>
                  <Alert>
                   <AlertTitle>{ticket.name}</AlertTitle>
                   <AlertDescription>
