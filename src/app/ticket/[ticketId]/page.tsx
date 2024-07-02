@@ -9,7 +9,10 @@ export default function Page(props:{params:{ticketId: string}}) {
     console.log(id)
     
 if (id) {
-    <TicketPage params={{ticketId:id}} />
+   return(
+       <TicketPage params={{ticketId:id}} />
+   )
+
 }
 
 else {
