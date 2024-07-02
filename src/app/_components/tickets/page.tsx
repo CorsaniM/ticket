@@ -19,7 +19,7 @@ export default function Tickets() {
           && listacompleta?.map((ticket) => {
             return (
               <div className="my-1">
-              <Link href={`/_components/tickets/${ticket.id}`} key={ticket.id}>
+              <Link href={`/ticket/${ticket.id}`} key={ticket.id}>
                  <Alert>
                   <AlertTitle>{ticket.name}</AlertTitle>
                   <AlertDescription>
