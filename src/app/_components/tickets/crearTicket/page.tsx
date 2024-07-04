@@ -7,6 +7,7 @@ import { Input } from "app/app/_components/ui/input"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { useOrganization, useUser } from "@clerk/nextjs"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../../ui/select"
 
 export default function CrearTicket() {
 
@@ -92,6 +93,22 @@ export default function CrearTicket() {
                         placeholder='Descripción...'
                         onChange={(e) => setDescription(e.target.value)}
                     />
+                </div>
+                <div>
+                <Select>
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Urgencia" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Nivel de urgencia</SelectLabel>
+          <SelectItem value="leve">Leve</SelectItem>
+          <SelectItem value="moderado">Moderado</SelectItem>
+          <SelectItem value="urgente">Urgente</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+
                 </div>
                 <div className="h-1/5 flex flex-col m-2 text-center">
                     <h1>Opcional* ingrese una imagen</h1>
