@@ -12,10 +12,12 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 export default function CrearTicket() {
 
     const { mutateAsync: createTicket, isPending } = api.tickets.create.useMutation()
+
     const [description, setDescription] = useState("")
     const [motivo, setMotivo] = useState("")
     const [empresa, setEmpresa] = useState("")
     const [image, setImage] = useState<File | null>(null)
+    const [urgencia, SetUrgencia] = useState(0)
     
     const { user } = useUser();
     const { organization } = useOrganization();
@@ -36,18 +38,21 @@ export default function CrearTicket() {
                     body: formData,
                 });
                 const data = await response.json();
+                console.log("Llego")
             }
-            
             await createTicket({
+                userId: user!.id,
+                title: motivo,
                 description: description,
-                name: motivo,
                 images: image?.name || "",
-                orgId: organization!.id,
+                urgencia: urgencia,
+                urgenciaSoporte: 0,
+                participantes: "",
                 state: "subida",
+                orgId: organization!.id,
                 createdAt: new Date(),
                 updatedAt: new Date(),
-                user: user!.id, 
-            })
+            })         
             toast.success('ticket creado correctamente')
             router.refresh()
             setOpen(false)
@@ -65,7 +70,7 @@ export default function CrearTicket() {
                             <h1>Ingrese el motivo de su ticket</h1>
                         </div>
                         <div className="flex-auto w-1/2 text-center">
-                            <h1>Ingrese el nombre de la empresa</h1>
+                            <h1>Ingrese departamento</h1>
                         </div>
                     </div> 
                     <div className="flex flex-row gap-6">
@@ -95,16 +100,16 @@ export default function CrearTicket() {
                     />
                 </div>
                 <div>
-                <Select>
+                <Select >
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Urgencia" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Nivel de urgencia</SelectLabel>
-          <SelectItem value="leve">Leve</SelectItem>
-          <SelectItem value="moderado">Moderado</SelectItem>
-          <SelectItem value="urgente">Urgente</SelectItem>
+          <SelectItem value="1">Leve</SelectItem>
+          <SelectItem value="3">Moderado</SelectItem>
+          <SelectItem value="5">Urgente</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>

@@ -11,13 +11,16 @@ export default function TicketPage(props:{params:{ticketId: string}}) {
 
   return (
     <div className="px-10 py-4">
+        {ticket ? (
       <Alert>
-        <AlertTitle>{ticket!.name}</AlertTitle>
+        <AlertTitle>{ticket!.title}</AlertTitle>
         <AlertDescription>
           ID: {ticket!.id} <br />
           Description: {ticket!.description}
         </AlertDescription>
+        
       </Alert>
+        ): (null)}
     </div>
   );
 }

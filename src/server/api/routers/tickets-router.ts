@@ -10,10 +10,13 @@ export const ticketsRouter = createTRPCRouter({
   create: publicProcedure
     .input(
       z.object({
-        user: z.string(),
-        name: z.string(),
+        userId: z.string(),
+        title: z.string(),
         description: z.string(),
         images: z.string(),
+        urgencia: z.number(),
+        urgenciaSoporte: z.number(),
+        participantes: z.string(),
         state: z.string(),
         orgId: z.string(),
         createdAt: z.date(),
@@ -24,12 +27,32 @@ export const ticketsRouter = createTRPCRouter({
       // simulate a slow db call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      await ctx.db.insert(tickets).values(input);
+      const [respuesta] = await ctx.db
+        .insert(tickets)
+        .values(input)
+        .returning();
+
+      if (!respuesta) {
+        throw new Error("Error al crear el ticket");
+      }
+
+      await db.insert(message).values({
+        userId: input.userId,
+        title: input.title,
+        description: input.description,
+        images: input.images,
+        state: "",
+        orgId: input.orgId,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        tipoMessage: "subida",
+        ticketId: 1,
+      });
     }),
 
   list: publicProcedure.query(({ ctx }) => {
     return ctx.db.query.tickets.findMany({
-      with: {message: true}
+      with: { message: true },
     });
   }),
 
@@ -41,7 +64,8 @@ export const ticketsRouter = createTRPCRouter({
     )
     .query(async ({ input }) => {
       const channel = await db.query.tickets.findMany({
-        where: eq(tickets.user, input.userId),
+        where: eq(tickets.userId, input.userId),
+        with: { message: true },
       });
 
       return channel;
@@ -65,12 +89,14 @@ export const ticketsRouter = createTRPCRouter({
     .input(
       z.object({
         id: z.number(),
-        user: z.string(),
-        name: z.string(),
+        userId: z.string(),
+        title: z.string(),
         description: z.string(),
         images: z.string(),
+        urgencia: z.number(),
+        urgenciaSoporte: z.number(),
+        participantes: z.string(),
         state: z.string(),
-        relevance: z.string(),
         orgId: z.string(),
         createdAt: z.date(),
         updatedAt: z.date(),

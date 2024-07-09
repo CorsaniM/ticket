@@ -4,53 +4,38 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "app/server/api/trpc";
 import { db } from "app/server/db";
-import { message } from "app/server/db/schema";
+import { images } from "app/server/db/schema";
 
-export const messageRouter = createTRPCRouter({
+export const imagesRouter = createTRPCRouter({
   create: publicProcedure
     .input(
       z.object({
-        userId: z.string(),
-        description: z.string(),
-        tipoMessage: z.string(),
-        title: z.string(),
+        id: z.number(),
         ticketId: z.number(),
-        images: z.string(),
-        state: z.string(),
-        createdAt: z.date(),
-        updatedAt: z.date(),
-        orgId: z.string(),
+        userId: z.string(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
       // simulate a slow db call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      await ctx.db.insert(message).values(input);
+      await ctx.db.insert(images).values(input);
     }),
 
   list: publicProcedure.query(({ ctx }) => {
-    return ctx.db.query.message.findMany();
+    return ctx.db.query.images.findMany();
   }),
 
   update: publicProcedure
     .input(
       z.object({
         id: z.number(),
-        userId: z.string(),
-        description: z.string(),
-        tipoMessage: z.string(),
-        title: z.string(),
         ticketId: z.number(),
-        images: z.string(),
-        state: z.string(),
-        createdAt: z.date(),
-        updatedAt: z.date(),
-        orgId: z.string(),
+        userId: z.string(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      await db.update(message).set(input).where(eq(message.id, input.id));
+      await db.update(images).set(input).where(eq(images.id, input.id));
     }),
 
   get: publicProcedure
@@ -60,8 +45,8 @@ export const messageRouter = createTRPCRouter({
       }),
     )
     .query(async ({ input }) => {
-      const channel = await db.query.message.findFirst({
-        where: eq(message.id, input.id),
+      const channel = await db.query.images.findFirst({
+        where: eq(images.id, input.id),
       });
 
       return channel;
@@ -74,6 +59,6 @@ export const messageRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ input }) => {
-      await db.delete(message).where(eq(message.id, input.id));
+      await db.delete(images).where(eq(images.id, input.id));
     }),
 });

@@ -16,13 +16,14 @@ export const tickets = createTable(
   "tickets",
   {
     id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-    user: text("user").notNull(),
-    name: text("name", { length: 256 }),
+    userId: text("userId").notNull(),
+    title: text("title", { length: 256 }),
     description: text("description"),
     images: text("images"),
-    urgencia: text("urgencia"),
+    urgencia: int("urgencia"),
+    urgenciaSoporte: int("urgenciaSoporte"),
     participantes: text("participantes"),
-    state: text("name", { length: 256 }),
+    state: text("state", { length: 256 }),
     orgId: text("orgId", { length: 256 }),
     createdAt: int("created_at", { mode: "timestamp" })
       .default(sql`CURRENT_TIMESTAMP`)
@@ -30,23 +31,23 @@ export const tickets = createTable(
     updatedAt: int("updatedAt", { mode: "timestamp" }),
   },
   (example) => ({
-    nameIndex: index("name_idx").on(example.name),
+    nameIndex: index("name_idx").on(example.title),
   }),
 );
 
-export const ticketsRelations = relations(tickets, ({many}) => ({
-  message: many(message)
-}))
+export const ticketsRelations = relations(tickets, ({ many }) => ({
+  message: many(message),
+}));
 
-export const message = createTable(
-  "message", 
-  {
+export const message = createTable("message", {
   id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-  user: text("user").notNull(),
+  userId: text("userId").notNull(),
+  tipoMessage: text("tipoMessage"),
+  title: text("title"),
   ticketId: int("ticketId"),
   description: text("description"),
   images: text("images"),
-  state: int("state", { mode: "boolean" }).default(false),
+  state: text("state"),
   orgId: text("orgId", { length: 256 }),
   createdAt: int("created_at", { mode: "timestamp" })
     .default(sql`CURRENT_TIMESTAMP`)
@@ -57,3 +58,15 @@ export const message = createTable(
 export const messageRelations = relations(message, ({ one }) => ({
   ticketId: one(tickets),
 }));
+
+export const images = createTable("images", {
+  id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+  ticketId: int("ticketId"),
+  url: text("url"),
+});
+
+export const participants = createTable("participants", {
+  id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+  userId: text("userId"),
+  ticketId: text("ticketId"),
+});

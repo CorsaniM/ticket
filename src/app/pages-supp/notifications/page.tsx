@@ -10,6 +10,7 @@ export default function NotiSupp() {
             <div className="flex flex-col align-center">
                 <Title>Notificaciones</Title>
                 <Notificaciones />
+                
             </div>
         </div>
     )
