@@ -7,6 +7,7 @@ export default function Upbar() {
     const { organization } = useOrganization();
     const { user } = useUser()
     const isAdmin = checkRole("owner" || "page_owner")
+
     return (
         <div className="flex w-screen h-16 shadow-md justify-between items-center p-5 font-serif">
             <div className="text-lg">
