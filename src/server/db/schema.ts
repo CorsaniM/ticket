@@ -1,7 +1,7 @@
 // Example model schema from the Drizzle docs
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
-import { sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import { index, int, sqliteTableCreator, text } from "drizzle-orm/sqlite-core";
 
 /**
@@ -20,6 +20,8 @@ export const tickets = createTable(
     name: text("name", { length: 256 }),
     description: text("description"),
     images: text("images"),
+    urgencia: text("urgencia"),
+    participantes: text("participantes"),
     state: text("name", { length: 256 }),
     orgId: text("orgId", { length: 256 }),
     createdAt: int("created_at", { mode: "timestamp" })
@@ -32,11 +34,16 @@ export const tickets = createTable(
   }),
 );
 
+export const ticketsRelations = relations(tickets, ({many}) => ({
+  message: many(message)
+}))
+
 export const message = createTable(
   "message", 
   {
   id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
   user: text("user").notNull(),
+  ticketId: int("ticketId"),
   description: text("description"),
   images: text("images"),
   state: int("state", { mode: "boolean" }).default(false),
@@ -47,18 +54,6 @@ export const message = createTable(
   updatedAt: int("updatedAt", { mode: "timestamp" }),
 });
 
-
-export const notification = createTable(
-  "notification", 
-  {
-  id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-  user: text("user").notNull(),
-  title: text("title", { length: 256 }),
-  description: text("description"),
-  state: int("state", { mode: "boolean" }).default(false),
-  orgId: text("orgId", { length: 256 }),
-  createdAt: int("created_at", { mode: "timestamp" })
-    .default(sql`CURRENT_TIMESTAMP`)
-    .notNull(),
-  updatedAt: int("updatedAt", { mode: "timestamp" }),
-});
+export const messageRelations = relations(message, ({ one }) => ({
+  ticketId: one(tickets),
+}));

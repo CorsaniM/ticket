@@ -4,7 +4,7 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "app/server/api/trpc";
 import { db } from "app/server/db";
-import { tickets } from "app/server/db/schema";
+import { message, tickets } from "app/server/db/schema";
 
 export const ticketsRouter = createTRPCRouter({
   create: publicProcedure
@@ -28,7 +28,9 @@ export const ticketsRouter = createTRPCRouter({
     }),
 
   list: publicProcedure.query(({ ctx }) => {
-    return ctx.db.query.tickets.findMany();
+    return ctx.db.query.tickets.findMany({
+      with: {message: true}
+    });
   }),
 
   getByUser: publicProcedure
