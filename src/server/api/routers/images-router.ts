@@ -1,5 +1,4 @@
 import { eq } from "drizzle-orm";
-import { datetime } from "drizzle-orm/mysql-core";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "app/server/api/trpc";
@@ -10,9 +9,9 @@ export const imagesRouter = createTRPCRouter({
   create: publicProcedure
     .input(
       z.object({
-        id: z.number(),
         ticketId: z.number(),
         userId: z.string(),
+        url: z.string(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -25,18 +24,6 @@ export const imagesRouter = createTRPCRouter({
   list: publicProcedure.query(({ ctx }) => {
     return ctx.db.query.images.findMany();
   }),
-
-  update: publicProcedure
-    .input(
-      z.object({
-        id: z.number(),
-        ticketId: z.number(),
-        userId: z.string(),
-      }),
-    )
-    .mutation(async ({ ctx, input }) => {
-      await db.update(images).set(input).where(eq(images.id, input.id));
-    }),
 
   get: publicProcedure
     .input(

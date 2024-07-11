@@ -4,7 +4,7 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "app/server/api/trpc";
 import { db } from "app/server/db";
-import { message, tickets } from "app/server/db/schema";
+import { images, message, tickets } from "app/server/db/schema";
 
 export const ticketsRouter = createTRPCRouter({
   create: publicProcedure
@@ -13,7 +13,6 @@ export const ticketsRouter = createTRPCRouter({
         userId: z.string(),
         title: z.string(),
         description: z.string(),
-        images: z.string(),
         urgencia: z.number(),
         urgenciaSoporte: z.number(),
         participantes: z.string(),
@@ -40,20 +39,30 @@ export const ticketsRouter = createTRPCRouter({
         userId: input.userId,
         title: input.title,
         description: input.description,
-        images: input.images,
         state: "",
         orgId: input.orgId,
         createdAt: new Date(),
         updatedAt: new Date(),
         tipoMessage: "subida",
-        ticketId: 1,
+        ticketId: respuesta.id,
+      });
+
+      await db.insert(images).values({
+        url: "",
+        ticketId: respuesta.id,
       });
     }),
 
-  list: publicProcedure.query(({ ctx }) => {
-    return ctx.db.query.tickets.findMany({
-      with: { message: true },
+  list: publicProcedure.query(async ({ ctx }) => {
+    const ticketsWithRelations = await ctx.db.query.tickets.findMany({
+      with: {
+        message: true,
+        images: true,
+        participantes: true,
+      },
     });
+
+    return ticketsWithRelations;
   }),
 
   getByUser: publicProcedure
@@ -62,29 +71,37 @@ export const ticketsRouter = createTRPCRouter({
         userId: z.string(),
       }),
     )
-    .query(async ({ input }) => {
-      const channel = await db.query.tickets.findMany({
+    .query(async ({ input, ctx }) => {
+      const ticketsWithRelations = await ctx.db.query.tickets.findMany({
         where: eq(tickets.userId, input.userId),
-        with: { message: true },
+        with: {
+          message: true,
+          images: true,
+          participantes: true,
+        },
       });
 
-      return channel;
+      return ticketsWithRelations;
     }),
 
   getByOrg: publicProcedure
     .input(
       z.object({
-        OrgId: z.string(),
+        orgId: z.string(),
       }),
     )
-    .query(async ({ input }) => {
-      const channel = await db.query.tickets.findFirst({
-        where: eq(tickets.orgId, input.OrgId),
+    .query(async ({ input, ctx }) => {
+      const ticketWithRelations = await ctx.db.query.tickets.findFirst({
+        where: eq(tickets.orgId, input.orgId),
+        with: {
+          message: true,
+          images: true,
+          participantes: true,
+        },
       });
 
-      return channel;
+      return ticketWithRelations;
     }),
-
   update: publicProcedure
     .input(
       z.object({
@@ -92,7 +109,6 @@ export const ticketsRouter = createTRPCRouter({
         userId: z.string(),
         title: z.string(),
         description: z.string(),
-        images: z.string(),
         urgencia: z.number(),
         urgenciaSoporte: z.number(),
         participantes: z.string(),
@@ -112,12 +128,17 @@ export const ticketsRouter = createTRPCRouter({
         id: z.number(),
       }),
     )
-    .query(async ({ input }) => {
-      const channel = await db.query.tickets.findFirst({
+    .query(async ({ input, ctx }) => {
+      const ticketWithRelations = await ctx.db.query.tickets.findFirst({
         where: eq(tickets.id, input.id),
+        with: {
+          message: true,
+          images: true,
+          participantes: true,
+        },
       });
 
-      return channel;
+      return ticketWithRelations;
     }),
 
   delete: publicProcedure

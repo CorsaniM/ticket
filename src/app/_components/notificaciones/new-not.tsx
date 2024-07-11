@@ -22,7 +22,7 @@ export default function NotificacionGenerica(props: {id: number}) {
         {message && (
           <Link href={`/tickets/${message.id}`} key={message.id}>
             <Alert className="p-3">
-              <AlertTitle>{message.name}</AlertTitle>
+              <AlertTitle>{message.title}</AlertTitle>
               <AlertDescription>{message.description}</AlertDescription>
             </Alert>
           </Link>

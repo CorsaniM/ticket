@@ -19,7 +19,6 @@ export const tickets = createTable(
     userId: text("userId").notNull(),
     title: text("title", { length: 256 }),
     description: text("description"),
-    images: text("images"),
     urgencia: int("urgencia"),
     urgenciaSoporte: int("urgenciaSoporte"),
     participantes: text("participantes"),
@@ -37,6 +36,8 @@ export const tickets = createTable(
 
 export const ticketsRelations = relations(tickets, ({ many }) => ({
   message: many(message),
+  images: many(images),
+  participantes: many(participants),
 }));
 
 export const message = createTable("message", {
@@ -44,7 +45,9 @@ export const message = createTable("message", {
   userId: text("userId").notNull(),
   tipoMessage: text("tipoMessage"),
   title: text("title"),
-  ticketId: int("ticketId"),
+  ticketId: int("ticketId")
+    .references(() => tickets.id)
+    .notNull(),
   description: text("description"),
   images: text("images"),
   state: text("state"),
@@ -55,18 +58,36 @@ export const message = createTable("message", {
   updatedAt: int("updatedAt", { mode: "timestamp" }),
 });
 
-export const messageRelations = relations(message, ({ one }) => ({
-  ticketId: one(tickets),
-}));
-
 export const images = createTable("images", {
   id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-  ticketId: int("ticketId"),
+  ticketId: int("ticketId")
+    .references(() => tickets.id)
+    .notNull(),
   url: text("url"),
 });
 
 export const participants = createTable("participants", {
   id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
   userId: text("userId"),
-  ticketId: text("ticketId"),
+  ticketId: int("ticketId")
+    .references(() => tickets.id)
+    .notNull(),
 });
+
+export const messageRelations = relations(message, ({ one }) => ({
+  ticket: one(tickets, {
+    fields: [message.ticketId],
+    references: [tickets.id],
+  }),
+}));
+
+export const imagesRelations = relations(images, ({ one }) => ({
+  ticket: one(tickets, { fields: [images.ticketId], references: [tickets.id] }),
+}));
+
+export const participantsRelations = relations(participants, ({ one }) => ({
+  ticket: one(tickets, {
+    fields: [participants.ticketId],
+    references: [tickets.id],
+  }),
+}));

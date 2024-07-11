@@ -3,15 +3,17 @@
 import { use, useState } from "react"
 import { api } from "app/trpc/react"
 import { Input } from "app/app/_components/ui/input"
-
+import { UploadDropzone } from "app/utils/uploadthing";
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { useOrganization, useUser } from "@clerk/nextjs"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../../ui/select"
+import ImageUpload from "../../image-upload";
 
 export default function CrearTicket() {
 
     const { mutateAsync: createTicket, isPending } = api.tickets.create.useMutation()
+    const { mutateAsync: createImage } = api.images.create.useMutation()
 
     const [description, setDescription] = useState("")
     const [motivo, setMotivo] = useState("")
@@ -44,7 +46,6 @@ export default function CrearTicket() {
                 userId: user!.id,
                 title: motivo,
                 description: description,
-                images: image?.name || "",
                 urgencia: urgencia,
                 urgenciaSoporte: 0,
                 participantes: "",
@@ -52,7 +53,8 @@ export default function CrearTicket() {
                 orgId: organization!.id,
                 createdAt: new Date(),
                 updatedAt: new Date(),
-            })         
+            })  
+             
             toast.success('ticket creado correctamente')
             router.refresh()
             setOpen(false)
@@ -117,10 +119,7 @@ export default function CrearTicket() {
                 </div>
                 <div className="h-1/5 flex flex-col m-2 text-center">
                     <h1>Opcional* ingrese una imagen</h1>
-                    <Input
-                        type="file"
-                        onChange={(e) => setImage(e.target.files?.[0] || null)}
-                    />
+                    <ImageUpload/>
                 </div>
                 <button
                     className="m-4 px-4 py-2 text-black rounded disabled:opacity-50 rounded-full bg-slate-200 hover:bg-slate-300"
