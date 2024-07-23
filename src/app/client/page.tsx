@@ -23,7 +23,7 @@ export default function Page(){
         </div>
 
 
-        <div className='flex border-solid border-2 border-slate-500 row-span-1 bg-slate-300 place-content-right flex-column pt-20'>
+        <div className='flex border-solid border-2 border-slate-500 row-span-1 bg-slate-300 place-content-right flex-column p-2'>
         <Dashboard/>
         </div>
 
