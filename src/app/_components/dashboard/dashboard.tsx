@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Notificaciones from '../notificaciones/page';
 import CrearTicket from '../tickets/crearTicket/page';
-import Finalizados from 'app/app/pages-client/tickets-finalizados/page';
+import Finalizados from 'app/app/client/tickets-finalizados/page';
 import Tickets from '../tickets/page';
 
 

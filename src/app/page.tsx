@@ -1,8 +1,7 @@
 "use client"
 import { useOrganization } from "@clerk/nextjs";
 import NotiSupp from "./pages-supp/notifications/page";
-import NotiClient from "./pages-client/notificaciones/page";
-import TodosTickets from "./pages-client/todos-tickets/page";
+import { redirect } from "next/navigation";
 
 
 export default function Page() {
@@ -14,9 +13,7 @@ return (
             )
 }  
 else{
-    return (
-        <TodosTickets/>
-                )
+    return redirect("client")
 }
 
 }
