@@ -1,6 +1,7 @@
 "use client"
 import { OrganizationSwitcher, UserButton, useOrganization, useUser } from "@clerk/nextjs";
 import { checkRole } from "app/lib/react/roles";
+import Link from "next/link";
 
 
 export default function Upbar() {
@@ -13,9 +14,9 @@ export default function Upbar() {
             <div className="text-lg">
                 {organization?.name === "IanTech" ?(
 
-                    <h1>Equipo de soporte {organization?.name}</h1>
+                    <Link href={"/soporte"}>Equipo de soporte {organization?.name}</Link>
                 ) : (
-                    <h1>¡Bienvenido {organization?.name}!</h1>
+                     <Link href={"/client"}>¡Bienvenido {organization?.name}!</Link>
                 )} 
 
             </div>

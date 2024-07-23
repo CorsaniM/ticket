@@ -12,9 +12,6 @@ import Upbar from "./_components/upbar";
 import { Toaster } from "./_components/ui/sonner";
 import { SyncActiveOrganization } from "./_components/SyncActiveOrganization";
 import { auth } from "@clerk/nextjs/server";
-import Buttons from "./_components/sidebar";
-import Dashboard from "./_components/dashboard/dashboard";
-import NotiClient from "./client/notificaciones/page";
 import { Title } from "./_components/ui/title";
 import Notificaciones from "./_components/notificaciones/page";
 

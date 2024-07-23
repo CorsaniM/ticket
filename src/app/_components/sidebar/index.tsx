@@ -58,17 +58,17 @@ export default function Buttons() {
      active:bg-stone-500">
             <SidenavItem 
                 icon={<MailPlus />} 
-                href="/pages-client/crear-tickets">
+                href="/client/crear-tickets">
                     Crear ticket
             </SidenavItem>
             <SidenavItem
                 icon={<MailCheck />}
-                href="/pages-client/tickets-finalizados">
+                href="/client/tickets-finalizados">
                     Tickets Finalizados
             </SidenavItem>
             <SidenavItem
                 icon={<MailX />}
-                href="/pages-client/todos-tickets">
+                href="/client/todos-tickets">
                     Todos los tickets
             </SidenavItem>
         </div>
