@@ -8,8 +8,8 @@ import { Alert, AlertTitle, AlertDescription } from "../ui/tarjeta";
 
 
 export default function Tickets() {
-  const user = useUser();
-  const ticketsPorUser = api.tickets.getByUser.useQuery({userId: user.user!.id}).data;
+  //const user = useUser();
+  //const ticketsPorUser = api.tickets.getByUser.useQuery({userId: user.user!.id}).data;
   const listacompleta = api.tickets.list.useQuery().data;
 
     return(
@@ -21,7 +21,7 @@ export default function Tickets() {
               <div className="my-1">
               <Link href={`/ticket/${ticket.id}`} key={ticket.id}>
                  <Alert>
-                  <AlertTitle>{ticket.name}</AlertTitle>
+                  <AlertTitle>{ticket.title}</AlertTitle>
                   <AlertDescription>
                   ID:{ticket.id} {ticket.description}
                   </AlertDescription>

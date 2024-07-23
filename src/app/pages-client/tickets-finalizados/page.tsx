@@ -8,7 +8,7 @@ export default function Page() {
     return (
         <div className="flex-auto">
             <div className="flex flex-col align-center">
-                <Title>Tickets pendientes</Title>
+                <Title>Tickets finalizados</Title>
                 <Tickets />
             </div>
         </div>

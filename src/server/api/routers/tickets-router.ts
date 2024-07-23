@@ -1,5 +1,4 @@
 import { eq } from "drizzle-orm";
-import { datetime } from "drizzle-orm/mysql-core";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "app/server/api/trpc";

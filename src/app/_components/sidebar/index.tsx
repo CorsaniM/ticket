@@ -12,7 +12,7 @@ import {
 import Sidenav, { SidenavItem } from '../sidenav';
 import { useOrganization } from "@clerk/nextjs";
 
-export default function Sidebar() {
+export default function Buttons() {
 
     const organization = useOrganization()
 
@@ -54,38 +54,24 @@ export default function Sidebar() {
     }  
     else{
         return (
-        <Sidenav>
-            <SidenavItem
-                icon={<Bell />}
-                href="/pages-client/notificaciones">
-                    Notificaciones
-            </SidenavItem>
+        <div className="w-full flex gap-2 place-content-center
+     active:bg-stone-500">
             <SidenavItem 
                 icon={<MailPlus />} 
                 href="/pages-client/crear-tickets">
                     Crear ticket
             </SidenavItem>
             <SidenavItem
-                icon={<Mails />}
-                href="/pages-client/tickets-pendientes">
-                    Tickets pendientes
-            </SidenavItem>
-            <SidenavItem
                 icon={<MailCheck />}
-                href="/pages-client/tickets-resueltos">
-                    Tickets resueltos
+                href="/pages-client/tickets-finalizados">
+                    Tickets Finalizados
             </SidenavItem>
             <SidenavItem
                 icon={<MailX />}
-                href="/pages-client/tickets-rechazados">
-                    Tickets rechazados
+                href="/pages-client/todos-tickets">
+                    Todos los tickets
             </SidenavItem>
-            <SidenavItem
-                icon={<MessageCircle />}
-                href="/pages-client/respuestas">
-                    Respuestas
-            </SidenavItem>
-        </Sidenav>
+        </div>
         )
     } 
 }

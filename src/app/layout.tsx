@@ -12,6 +12,11 @@ import Upbar from "./_components/upbar";
 import { Toaster } from "./_components/ui/sonner";
 import { SyncActiveOrganization } from "./_components/SyncActiveOrganization";
 import { auth } from "@clerk/nextjs/server";
+import Buttons from "./_components/sidebar";
+import Dashboard from "./_components/dashboard/dashboard";
+import NotiClient from "./pages-client/notificaciones/page";
+import { Title } from "./_components/ui/title";
+import Notificaciones from "./_components/notificaciones/page";
 
 
 export const metadata = {
@@ -34,17 +39,31 @@ export default function RootLayout({
     <ClerkProvider>
       <SyncActiveOrganization membership={sessionClaims?.membership}/>
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body>
-      <div className="fixed top h-16">
-        <Upbar/>
-      </div>
-      <div className='fixed top-16 bottom-0 left-0 flex flex-col gap-2 shadow-xl sm:flex h-full'>
-      <Sidebar/>
-      </div>
-      <div className='flex place-content-center flex-column ml-52 pt-20'>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
-        <Toaster />
-      </div>
+      <body className="h-screen">
+        <div className="fixed top h-16">
+          <Upbar/>
+        </div>
+        <div className="h-screen pt-16 grid grid-rows-4 grid-flow-col gap-1">
+
+        <div className='list-none place-content-center'>
+        <Buttons/>
+        </div>
+
+        <div className='flex row-span-3 place-content-center max-h-full flex-column px-20'>
+          <TRPCReactProvider>{children}</TRPCReactProvider>
+          <Toaster />
+        </div>
+        
+        <div className='flex row-span-1 bg-slate-400 place-content-right flex-column pt-20'>
+        <Dashboard/>
+        </div>
+
+        <div className='flex row-span-3 bg-slate-200'>
+        <TRPCReactProvider>
+          <NotiClient/>
+        </TRPCReactProvider>
+        </div>
+        </div>
       </body>
     </html>
     </ClerkProvider>

@@ -1,13 +1,8 @@
 "use client"
 
 import { api } from "app/trpc/react"
-import { List, ListTile } from "app/app/_components/list"
-import { useUser } from "@clerk/nextjs"
-import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, AwaitedReactNode } from "react";
-import { message } from "app/server/db/schema";
-import Link from "next/link";
-import { Terminal } from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "../ui/tarjeta";
+import { Link } from "lucide-react";
 
 
 export default function NotificacionGenerica(props: {id: number}) {

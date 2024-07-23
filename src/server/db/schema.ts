@@ -2,7 +2,8 @@
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
 import { relations, sql } from "drizzle-orm";
-import { index, int, sqliteTableCreator, text } from "drizzle-orm/sqlite-core";
+import { boolean } from "drizzle-orm/mysql-core";
+import { index, int, integer, SQLiteColumn, sqliteTable, sqliteTableCreator, text } from "drizzle-orm/sqlite-core";
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
@@ -28,6 +29,7 @@ export const tickets = createTable(
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
     updatedAt: int("updatedAt", { mode: "timestamp" }),
+    isRead: integer('isRead').default(0).notNull(),
   },
   (example) => ({
     nameIndex: index("name_idx").on(example.title),
@@ -84,6 +86,12 @@ export const messageRelations = relations(message, ({ one }) => ({
 export const imagesRelations = relations(images, ({ one }) => ({
   ticket: one(tickets, { fields: [images.ticketId], references: [tickets.id] }),
 }));
+
+export const notifications = sqliteTable('notifications', {
+  id: integer('id').primaryKey().notNull(),
+  message: text('message').notNull(),
+  createdAt: text('createdAt').notNull(),
+})
 
 export const participantsRelations = relations(participants, ({ one }) => ({
   ticket: one(tickets, {

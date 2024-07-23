@@ -3,11 +3,11 @@ import Link from "next/link";
 
 
 export default function Sidenav(props: { children: React.ReactNode }) {
-  return <ul>{props.children}</ul>;
+  return <li>{props.children}</li>;
 }
 
 export function SidenavSeparator(props: { children: React.ReactNode }) {
-  return <li className="px-4 pt-3 text-sm font-medium">{props.children}</li>;
+  return <li className=" px-4 pt-3 text-sm font-medium">{props.children}</li>;
 }
 
 export function SidenavItem(props: {
@@ -16,12 +16,12 @@ export function SidenavItem(props: {
   href?: string;
   onClick?: () => void;
 }) {
-  const className = `w-full flex gap-2 px-5 py-4 items-center
+  const className = ` w-full flex gap-2 px-5 py-4 items-center 
     hover:bg-stone-300 active:bg-stone-500`;
   const content = (
     <>
-      <div className="items-center justify-center p-1">{props.icon}</div>
-      <p className="text block w-full text-left text-sm font-semibold">
+      <div className=" items-center justify-center p-1 ">{props.icon}</div>
+      <p className="w-full text-left text-sm font-semibold">
         {props.children}
       </p>
     </>
