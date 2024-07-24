@@ -8,9 +8,10 @@ export default function Page() {
     return (
         <div className="flex-auto">
             <div className="flex flex-col align-center">
-                <Title>Nuevos tickets</Title>
+                <Title>Tickets finalizados</Title>
                 <Tickets />
             </div>
         </div>
     )
 }
+
