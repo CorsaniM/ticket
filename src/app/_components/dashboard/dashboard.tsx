@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Notificaciones from '../notificaciones/page';
-import CrearTicket from '../tickets/crearTicket/page';
+import CrearTicket from 'app/app/ticket/crearTicket/page';
 import Finalizados from 'app/app/client/tickets-finalizados/page';
-import Tickets from '../tickets/page';
+import Tickets from 'app/app/ticket/page';
 import { api } from 'app/trpc/react';
 import { Title } from '../ui/title';
 
