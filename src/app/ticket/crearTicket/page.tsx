@@ -7,8 +7,8 @@ import { UploadDropzone } from "app/utils/uploadthing";
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { useOrganization, useUser } from "@clerk/nextjs"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../../ui/select"
-import ImageUpload from "../../image-upload";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "app/app/_components/ui/select"
+import ImageUpload from "app/app/_components/image-upload";
 
 export default function CrearTicket() {
 

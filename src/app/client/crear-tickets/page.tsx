@@ -1,6 +1,6 @@
 "use client"
 import { Title } from "app/app/_components/ui/title"
-import CrearTicket from "app/app/_components/tickets/crearTicket/page"
+import CrearTicket from "app/app/ticket/crearTicket/page"
 
 export default function ClientPage() {
     return (

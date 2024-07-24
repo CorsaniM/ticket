@@ -10,7 +10,7 @@ export default function TicketPage(props:{params:{ticketId: string}}) {
 
 
   return (
-    <div className="px-10 py-4">
+    <div className="px-10 py-24">
         {ticket ? (
       <Alert>
         <AlertTitle>{ticket!.title}</AlertTitle>
