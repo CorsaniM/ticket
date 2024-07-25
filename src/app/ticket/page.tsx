@@ -4,7 +4,7 @@ import { api } from "app/trpc/react"
 import { List, ListTile } from "app/app/_components/list"
 import { useUser } from "@clerk/nextjs"
 import Link from "next/link";
-import { Alert, AlertTitle, AlertDescription } from "../_components/ui/tarjeta";
+import { Card, CardTitle, CardDescription } from "../_components/ui/tarjeta";
 
 
 export default function Tickets() {
@@ -20,12 +20,12 @@ export default function Tickets() {
             return (
               <div className="my-1">
               <Link href={`/ticket/${ticket.id}`} key={ticket.id}>
-                 <Alert>
-                  <AlertTitle>{ticket.title}</AlertTitle>
-                  <AlertDescription>
+                 <Card className="hover:bg-stone-100 active:bg-stone-200">
+                  <CardTitle>{ticket.title}</CardTitle>
+                  <CardDescription>
                   ID:{ticket.id} {ticket.description}
-                  </AlertDescription>
-                </Alert>
+                  </CardDescription>
+                </Card>
               </Link>
               </div>
             );

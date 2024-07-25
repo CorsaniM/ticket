@@ -19,7 +19,7 @@ const alertVariants = cva(
   }
 )
 
-const Alert = React.forwardRef<
+const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
 >(({ className, variant, ...props }, ref) => (
@@ -30,9 +30,9 @@ const Alert = React.forwardRef<
     {...props}
   />
 ))
-Alert.displayName = "Alert"
+Card.displayName = "Card"
 
-const AlertTitle = React.forwardRef<
+const CardTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
@@ -42,9 +42,9 @@ const AlertTitle = React.forwardRef<
     {...props}
   />
 ))
-AlertTitle.displayName = "AlertTitle"
+CardTitle.displayName = "CardTitle"
 
-const AlertDescription = React.forwardRef<
+const CardDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
@@ -54,6 +54,6 @@ const AlertDescription = React.forwardRef<
     {...props}
   />
 ))
-AlertDescription.displayName = "AlertDescription"
+CardDescription.displayName = "CardDescription"
 
-export { Alert, AlertTitle, AlertDescription }
+export { Card, CardTitle, CardDescription }

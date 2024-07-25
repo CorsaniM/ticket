@@ -54,8 +54,7 @@ export default function Buttons() {
     }  
     else{
         return (
-        <div className="w-full flex gap-2 place-content-center
-     active:bg-stone-500">
+        <div className="w-full flex gap-2 place-content-center">
             <SidenavItem 
                 icon={<MailPlus />} 
                 href="/client/crear-tickets">

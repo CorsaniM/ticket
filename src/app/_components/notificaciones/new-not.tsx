@@ -1,7 +1,7 @@
 "use client"
 
 import { api } from "app/trpc/react"
-import { Alert, AlertTitle, AlertDescription } from "../ui/tarjeta";
+import { Card, CardTitle, CardDescription } from "../ui/tarjeta";
 import { Link } from "lucide-react";
 
 
@@ -16,10 +16,10 @@ export default function NotificacionGenerica(props: {id: number}) {
       <div>
         {message && (
           <Link href={`/tickets/${message.id}`} key={message.id}>
-            <Alert className="p-3">
-              <AlertTitle>{message.title}</AlertTitle>
-              <AlertDescription>{message.description}</AlertDescription>
-            </Alert>
+            <Card className="p-3">
+              <CardTitle>{message.title}</CardTitle>
+              <CardDescription>{message.description}</CardDescription>
+            </Card>
           </Link>
         )}
       </div>
