@@ -7,6 +7,7 @@ import {
   ClerkProvider,
   useOrganization,
 } from '@clerk/nextjs'
+import Sidebar from "./_components/botonera";
 import Upbar from "./_components/upbar";
 import { Toaster } from "./_components/ui/sonner";
 import { SyncActiveOrganization } from "./_components/SyncActiveOrganization";

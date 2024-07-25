@@ -49,7 +49,7 @@ export default function CrearTicket() {
                 urgencia: urgencia,
                 urgenciaSoporte: 0,
                 participantes: "",
-                state: "subida",
+                state: "pendiente",
                 orgId: organization!.id,
                 createdAt: new Date(),
                 updatedAt: new Date(),
@@ -103,12 +103,12 @@ export default function CrearTicket() {
                 </div>
                 <div>
                 <Select >
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[180px] bg-white">
         <SelectValue placeholder="Urgencia" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>Nivel de urgencia</SelectLabel>
+          <SelectLabel >Nivel de urgencia</SelectLabel>
           <SelectItem value="1">Leve</SelectItem>
           <SelectItem value="3">Moderado</SelectItem>
           <SelectItem value="5">Urgente</SelectItem>

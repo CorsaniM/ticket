@@ -1,7 +1,7 @@
 "use client"
 import Dashboard from "../_components/dashboard/dashboard";
 import Notificaciones from "../_components/notificaciones/page";
-import Buttons from "../_components/sidebar";
+import Buttons from "../_components/botonera";
 import Tickets from "app/app/ticket/page";
 import { Title } from "../_components/ui/title";
 
