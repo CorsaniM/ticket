@@ -7,13 +7,10 @@ import {
   ClerkProvider,
   useOrganization,
 } from '@clerk/nextjs'
-import Sidebar from "./_components/sidebar";
 import Upbar from "./_components/upbar";
 import { Toaster } from "./_components/ui/sonner";
 import { SyncActiveOrganization } from "./_components/SyncActiveOrganization";
 import { auth } from "@clerk/nextjs/server";
-import { Title } from "./_components/ui/title";
-import Notificaciones from "./_components/notificaciones/page";
 
 
 export const metadata = {

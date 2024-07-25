@@ -1,10 +1,10 @@
-"use client"
 import {
     Bell,
     Inbox,
     MailCheck,
     MailOpen,
     MailPlus,
+    MailSearch,
     MailX,
     Mails,
     MessageCircle,
@@ -20,21 +20,26 @@ export default function Buttons() {
         return (
             <div className="w-full flex gap-2 place-content-center
          active:bg-stone-500">
+                 <SidenavItem
+                    icon={<MailOpen />}
+                    href="/soporte/tickets-asignados">
+                        Tickets asignados
+                </SidenavItem>
                 <SidenavItem 
-                    icon={<MailPlus />} 
-                    href="/client/crear-tickets">
-                        Crear ticket
+                    icon={<MailSearch />} 
+                    href="/soporte/tickets-proceso">
+                        Tickets en proceso
                 </SidenavItem>
                 <SidenavItem
                     icon={<MailCheck />}
-                    href="/client/tickets-finalizados">
-                        Tickets Finalizados
+                    href="/soporte/todos-tickets-sop">
+                        Tickets finalizados
                 </SidenavItem>
                 <SidenavItem
-                    icon={<MailX />}
-                    href="/client/todos-tickets">
-                        Todos los tickets
-                </SidenavItem>
+                icon={<Mails />}
+                href="/client/todos-tickets">
+                    Todos los tickets
+            </SidenavItem>
             </div>
             )
     }  
@@ -53,7 +58,7 @@ export default function Buttons() {
                     Tickets Finalizados
             </SidenavItem>
             <SidenavItem
-                icon={<MailX />}
+                icon={<Mails/>}
                 href="/client/todos-tickets">
                     Todos los tickets
             </SidenavItem>
