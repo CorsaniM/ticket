@@ -20,13 +20,8 @@ export default function Buttons() {
         return (
             <div className="w-full flex gap-2 place-content-center
          active:bg-stone-500">
-                 <SidenavItem
-                    icon={<MailOpen />}
-                    href="/soporte/tickets-asignados">
-                        Tickets asignados
-                </SidenavItem>
                 <SidenavItem 
-                    icon={<MailSearch />} 
+                    icon={<MailOpen />} 
                     href="/soporte/tickets-proceso">
                         Tickets en proceso
                 </SidenavItem>
