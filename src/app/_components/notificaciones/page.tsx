@@ -5,19 +5,19 @@ import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, Await
 
 export default function Notificaciones() {
 
-    const tickets = api.tickets.list.useQuery().data
-
+    const mensaje = api.message.list.useQuery().data
+    const mensajesNuevos = mensaje?.filter((x)=>x.state == "no leido")
     return(
             <List>
-          {tickets ? (
-            tickets.map((tickets: { id: Key | null | undefined; message: any[]; title: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; }) => {
+          {mensajesNuevos ? (
+            mensajesNuevos.map((mensaje) => {
               return (
                 <div className="mx-3" >
                 <ListTile
-                  key={tickets.id}
-                  leading={tickets.message.find((x: { id: number; }) => x.id === 0)?.id}
-                  href={`ticket/${tickets.id}`}
-                  title={`Nueva notificación: ` + tickets.title}
+                  key={mensaje.id}
+                  leading={mensaje.description}
+                  href={`ticket/${mensaje.ticketId}`}
+                  title={`Nueva notificación: ` + mensaje.title}
                   />
                 <hr className="border-black"/>
               </div>

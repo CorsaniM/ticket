@@ -37,16 +37,7 @@ export const messageRouter = createTRPCRouter({
     .input(
       z.object({
         id: z.number(),
-        userId: z.string(),
-        description: z.string(),
-        tipoMessage: z.string(),
-        title: z.string(),
-        ticketId: z.number(),
-        images: z.string(),
         state: z.string(),
-        createdAt: z.date(),
-        updatedAt: z.date(),
-        orgId: z.string(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
